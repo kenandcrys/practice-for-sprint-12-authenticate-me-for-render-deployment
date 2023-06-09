@@ -1,8 +1,5 @@
-const path = require('path');
-
-module.exports = {
-  config: path.resolve('config', 'database.js'),
-  'models-path': path.resolve('db', 'models'),
-  'seeders-path': path.resolve('db', 'seeders'),
-  'migrations-path': path.resolve('db', 'migrations')
-};
+PORT=8000
+DB_FILE=db/dev.db
+JWT_SECRET=password
+JWT_EXPIRES_IN=604800
+SCHEMA=formSchema
