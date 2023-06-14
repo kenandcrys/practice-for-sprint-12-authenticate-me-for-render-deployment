@@ -1,8 +1,10 @@
-# `API Documentation`
+# BitBnB
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+
+![DB Schema](https://github.com/carlosstich/BitBnB/blob/main/backend/BitBnB.png)
+
 
 ## API Documentation
 
@@ -50,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /airbnb/users
+  * URL: /current-user
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -67,7 +69,7 @@ Returns the information about the current user that is logged in.
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith"
-      } 
+      }
     }
     ```
 
@@ -91,7 +93,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /airbnb/users
+  * URL: /login
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -117,7 +119,7 @@ information.
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith"
-      } 
+      }
     }
     ```
 
@@ -157,7 +159,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /airbnb/users
+  * URL: /signup
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -247,7 +249,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /airbnb/spots
+  * URL: /spots
   * Body: none
 
 * Successful Response
@@ -286,8 +288,8 @@ Returns all the spots owned (created) by the current user.
 
 * Require Authentication: true
 * Request
-  * Method: POST
-  * URL: /airbnb/spots
+  * Method: GET
+  * URL: /my-spots
   * Body: none
 
 * Successful Response
@@ -327,7 +329,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /airbnb/spots/{id}
+  * URL: /spots/:spotId
   * Body: none
 
 * Successful Response
@@ -392,7 +394,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /airbnb/spots
+  * URL: /spots
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -466,7 +468,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: /airbnb/spots/{spot_id}/images
+  * URL: /spots/:spotId/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -512,7 +514,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: PUT
-  * URL: /airbnb/spots/{spot_id}
+  * URL: /spots/:spotId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -598,7 +600,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /airbnb/spots/{spot_id}
+  * URL: /spots/:spotId
   * Body: none
 
 * Successful Response
@@ -634,7 +636,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /airbnb/reviews/currentUser
+  * URL: /reviews/user
   * Body: none
 
 * Successful Response
@@ -690,7 +692,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /airbnb/reviews?spot_id={spot_id} I HAVE NO IDEA
+  * URL: spots/:spotId/reviews
   * Body: none
 
 * Successful Response
@@ -745,7 +747,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /airbnb/spots/{spot_id}/reviews
+  * URL: spots/:spotId/reviews
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -823,7 +825,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /airbnb/reviews/{review_id}/images
+  * URL: /review/:reviewId/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -880,7 +882,7 @@ Update and return an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: PUT
-  * URL: /airbnb/reviews/{review_id}
+  * URL: /review/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -946,7 +948,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /airbnb/reviews/{review_id}
+  * URL: /review/:reviewId
   * Body: none
 
 * Successful Response
@@ -982,7 +984,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /airbnb/bookings/currentUser
+  * URL: /bookings/:usersId
   * Body: none
 
 * Successful Response
@@ -1027,7 +1029,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /airbnb/spots/{spot_id}/bookings
+  * URL: /spots/:spotId/bookings
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -1095,7 +1097,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: /airbnb/bookings/{spot_id}
+  * URL: /spots/:spotId/bookings
   * Body:
 
     ```json
@@ -1173,8 +1175,8 @@ Update and return an existing booking.
 * Require Authentication: true
 * Require proper authorization: Booking must belong to the current user
 * Request
-  * Method: PATCH
-  * URL: /airbnb/bookings/{booking_id}
+  * Method: PUT
+  * URL: /bookings/:bookingId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1268,7 +1270,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /airbnb/bookings/{booking_id}
+  * URL: bookings/:bookingId
   * Body: none
 
 * Successful Response
@@ -1317,7 +1319,7 @@ Delete an existing image for a Spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /airbnb/spots/{spot_id}/images/{image_id}
+  * URL: /spots/:spotId/image
   * Body: none
 
 * Successful Response
@@ -1352,7 +1354,7 @@ Delete an existing image for a Review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /airbnb/reviews/{review_id}/images/{image_id}
+  * URL: reviews/:reviewId/image
   * Body: none
 
 * Successful Response
@@ -1386,7 +1388,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /airbnb/spots
+  * URL: spots/
   * Query Parameters
     * page: integer, minimum: 1, maximum: 10, default: 1
     * size: integer, minimum: 1, maximum: 20, default: 20

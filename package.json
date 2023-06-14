@@ -1,5 +1,5 @@
 {
-  "name": "airbnb",
+  "name": "bitbnb",
   "version": "1.0.0",
   "description": "## Database Schema Design",
   "main": "index.js",
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chauchau000/AirBnB.git"
+    "url": "git+https://github.com/carlosstich/BitBnB.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chauchau000/AirBnB/issues"
+    "url": "https://github.com/carlosstich/BitBnB/issues"
   },
-  "homepage": "https://github.com/chauchau000/AirBnB#readme"
+  "homepage": "https://github.com/carlosstich/BitBnB#readme"
 }

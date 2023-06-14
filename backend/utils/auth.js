@@ -58,7 +58,6 @@ const setTokenCookie = (res, user) => {
     });
   };
 
-
   const requireAuth = function (req, _res, next) {
     if (req.user) return next();
   
@@ -69,4 +68,4 @@ const setTokenCookie = (res, user) => {
     return next(err);
   }
 
-  module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, requireAuth };
