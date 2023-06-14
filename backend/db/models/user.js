@@ -3,9 +3,16 @@ const { Model, Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate(models) {
-      // define association here
-      User.hasMany(models.Spot, { foreignKey: "ownerId" });
+
+      static associate(models) {
+      // One-to-many relationship with Booking
+      User.hasMany(models.Booking, {foreignKey: 'userId'});
+
+      // One-to-many relationship with Review
+      User.hasMany(models.Review, {foreignKey: 'userId'});
+
+      // One-to-many relationship with Spot
+      User.hasMany(models.Spot, {foreignKey: 'ownerId'});
     }
   };
 
@@ -21,6 +28,24 @@ module.exports = (sequelize, DataTypes) => {
               throw new Error("Cannot be an email.");
             }
           }
+        }
+      },
+      firstName: {
+        type: DataTypes.STRING(256),
+        allowNull: false,
+        defaultValue: true,
+        validate: {
+          len: [2, 256],
+          isAlphanumeric: true
+        }
+      },
+      lastName: {
+        type: DataTypes.STRING(256),
+        allowNull: false,
+        defaultValue: true,
+        validate: {
+          len: [2, 256],
+          isAlphanumeric: true
         }
       },
       email: {
@@ -44,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "User",
       defaultScope: {
         attributes: {
-          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+          exclude: ["firstName", "lastName", "hashedPassword", "email", "createdAt", "updatedAt"]
         }
       }
     }

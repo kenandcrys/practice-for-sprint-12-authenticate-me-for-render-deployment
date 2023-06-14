@@ -1,11 +1,13 @@
+// backend/routes/api/session.js
 const express = require('express');
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
+
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -21,7 +23,7 @@ const validateLogin = [
   ];
 
 
-// Log in
+// *Log In*
 router.post(
     '/',
     validateLogin,
@@ -59,7 +61,8 @@ router.post(
     }
   );
 
-  router.delete(
+// *Log Out*
+router.delete(
     '/',
     (_req, res) => {
       res.clearCookie('token');
@@ -67,7 +70,8 @@ router.post(
     }
   );
 
-  router.get(
+// *Restore Session User*
+router.get(
     '/',
     (req, res) => {
       const { user } = req;
@@ -84,4 +88,4 @@ router.post(
     }
   );
 
-  module.exports = router;
+module.exports = router;
