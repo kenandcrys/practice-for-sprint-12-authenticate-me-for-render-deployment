@@ -1,9 +1,8 @@
-# AirBnB
+# `API Documentation`
 
 ## Database Schema Design
-![AirBnB (3)](https://github.com/chauchau000/AirBnB/assets/117422078/bcd8d5d5-ea2d-4c26-a018-6135b2c0937c)
 
-[Link to database schema](https://dbdiagram.io/d/646eda3adca9fb07c4ba8e34)
+`<insert database schema design here>`
 
 ## API Documentation
 
@@ -44,8 +43,6 @@ correct role(s) or permission(s).
     }
     ```
 
-<!-- ------------------------------------------------------------------------------------------- -->
-
 ### Get the Current User
 
 Returns the information about the current user that is logged in.
@@ -53,7 +50,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId
+  * URL: /airbnb/users
   * Body: none
 
 * Successful Response when there is a logged in user
@@ -85,7 +82,7 @@ Returns the information about the current user that is logged in.
       "user": null
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
+
 ### Log In a User
 
 Logs in a current user with valid credentials and returns the current user's
@@ -94,7 +91,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /login
+  * URL: /airbnb/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -151,7 +148,6 @@ information.
       }
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Sign Up a User
 
@@ -161,7 +157,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: POST
-  * URL: /newUser
+  * URL: /airbnb/users
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -241,7 +237,6 @@ user's information.
       }
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ## SPOTS
 
@@ -252,7 +247,7 @@ Returns all the spots.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots
+  * URL: /airbnb/spots
   * Body: none
 
 * Successful Response
@@ -284,7 +279,6 @@ Returns all the spots.
       ]
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Get all Spots owned by the Current User
 
@@ -292,8 +286,8 @@ Returns all the spots owned (created) by the current user.
 
 * Require Authentication: true
 * Request
-  * Method: GET
-  * URL: /users/:userId/spots
+  * Method: POST
+  * URL: /airbnb/spots
   * Body: none
 
 * Successful Response
@@ -325,7 +319,6 @@ Returns all the spots owned (created) by the current user.
       ]
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Get details of a Spot from an id
 
@@ -334,7 +327,7 @@ Returns the details of a spot specified by its id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots/:spotId
+  * URL: /airbnb/spots/{id}
   * Body: none
 
 * Successful Response
@@ -391,7 +384,6 @@ Returns the details of a spot specified by its id.
       "message": "Spot couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Create a Spot
 
@@ -400,7 +392,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /spots
+  * URL: /airbnb/spots
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -465,7 +457,6 @@ Creates and returns a new spot.
       }
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Add an Image to a Spot based on the Spot's id
 
@@ -475,7 +466,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: POST
-  * URL: /spots/:spotId/images
+  * URL: /airbnb/spots/{spot_id}/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -512,7 +503,6 @@ Create and return a new image for a spot specified by id.
       "message": "Spot couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Edit a Spot
 
@@ -521,8 +511,8 @@ Updates and returns an existing spot.
 * Require Authentication: true
 * Require proper authorization: Spot must belong to the current user
 * Request
-  * Method: PUT/PATCH
-  * URL: /spots/:spotId
+  * Method: PUT
+  * URL: /airbnb/spots/{spot_id}
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -599,7 +589,6 @@ Updates and returns an existing spot.
       "message": "Spot couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Delete a Spot
 
@@ -609,7 +598,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /spots/:spotId
+  * URL: /airbnb/spots/{spot_id}
   * Body: none
 
 * Successful Response
@@ -635,7 +624,6 @@ Deletes an existing spot.
       "message": "Spot couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ## REVIEWS
 
@@ -646,7 +634,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/reviews
+  * URL: /airbnb/reviews/currentUser
   * Body: none
 
 * Successful Response
@@ -694,7 +682,6 @@ Returns all the reviews written by the current user.
       ]
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Get all Reviews by a Spot's id
 
@@ -703,7 +690,7 @@ Returns all the reviews that belong to a spot specified by id.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /spots/:spotId/reviews
+  * URL: /airbnb/reviews?spot_id={spot_id} I HAVE NO IDEA
   * Body: none
 
 * Successful Response
@@ -750,7 +737,6 @@ Returns all the reviews that belong to a spot specified by id.
       "message": "Spot couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Create a Review for a Spot based on the Spot's id
 
@@ -759,7 +745,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: POST
-  * URL: /spots/:spotId/reviews
+  * URL: /airbnb/spots/{spot_id}/reviews
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -828,7 +814,6 @@ Create and return a new review for a spot specified by id.
       "message": "User already has a review for this spot"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Add an Image to a Review based on the Review's id
 
@@ -838,7 +823,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: POST
-  * URL: /reviews/:reviewId/images
+  * URL: /airbnb/reviews/{review_id}/images
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -886,7 +871,6 @@ Create and return a new image for a review specified by id.
       "message": "Maximum number of images for this resource was reached"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Edit a Review
 
@@ -895,9 +879,9 @@ Update and return an existing review.
 * Require Authentication: true
 * Require proper authorization: Review must belong to the current user
 * Request
-  * Method: PUT/PATCH
-  * URL: /reviews/:reviewId
-  * Headers
+  * Method: PUT
+  * URL: /airbnb/reviews/{review_id}
+  * Headers:
     * Content-Type: application/json
   * Body:
 
@@ -953,7 +937,6 @@ Update and return an existing review.
       "message": "Review couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Delete a Review
 
@@ -963,7 +946,7 @@ Delete an existing review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /reviews/:reviewId
+  * URL: /airbnb/reviews/{review_id}
   * Body: none
 
 * Successful Response
@@ -989,7 +972,6 @@ Delete an existing review.
       "message": "Review couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ## BOOKINGS
 
@@ -1000,7 +982,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/:userId/bookings
+  * URL: /airbnb/bookings/currentUser
   * Body: none
 
 * Successful Response
@@ -1037,7 +1019,6 @@ Return all the bookings that the current user has made.
       ]
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Get all Bookings for a Spot based on the Spot's id
 
@@ -1046,7 +1027,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /spots/:spotId/bookings
+  * URL: /airbnb/spots/{spot_id}/bookings
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -1105,7 +1086,6 @@ Return all the bookings for a spot specified by id.
       "message": "Spot couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Create a Booking from a Spot based on the Spot's id
 
@@ -1115,7 +1095,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: POST
-  * URL: /spots/:spotId/bookings
+  * URL: /airbnb/bookings/{spot_id}
   * Body:
 
     ```json
@@ -1185,7 +1165,6 @@ Create and return a new booking from a spot specified by id.
       }
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Edit a Booking
 
@@ -1194,8 +1173,8 @@ Update and return an existing booking.
 * Require Authentication: true
 * Require proper authorization: Booking must belong to the current user
 * Request
-  * Method: PUT/PATCH
-  * URL: /bookings/:bookingId
+  * Method: PATCH
+  * URL: /airbnb/bookings/{booking_id}
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1279,7 +1258,6 @@ Update and return an existing booking.
       }
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Delete a Booking
 
@@ -1290,7 +1268,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /bookings/:bookingId
+  * URL: /airbnb/bookings/{booking_id}
   * Body: none
 
 * Successful Response
@@ -1328,7 +1306,6 @@ Delete an existing booking.
       "message": "Bookings that have been started can't be deleted"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ## IMAGES
 
@@ -1340,7 +1317,7 @@ Delete an existing image for a Spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /spots/:spotId/images/:imageId
+  * URL: /airbnb/spots/{spot_id}/images/{image_id}
   * Body: none
 
 * Successful Response
@@ -1366,7 +1343,6 @@ Delete an existing image for a Spot.
       "message": "Spot Image couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ### Delete a Review Image
 
@@ -1376,7 +1352,7 @@ Delete an existing image for a Review.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: DELETE
-  * URL: /reviews/:reviewId/images/:imageId
+  * URL: /airbnb/reviews/{review_id}/images/{image_id}
   * Body: none
 
 * Successful Response
@@ -1402,7 +1378,6 @@ Delete an existing image for a Review.
       "message": "Review Image couldn't be found"
     }
     ```
-<!-- ------------------------------------------------------------------------------------------- -->
 
 ## Add Query Filters to Get All Spots
 
@@ -1411,7 +1386,7 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /homes?page=1&size=20
+  * URL: /airbnb/spots
   * Query Parameters
     * page: integer, minimum: 1, maximum: 10, default: 1
     * size: integer, minimum: 1, maximum: 20, default: 20
@@ -1476,4 +1451,3 @@ Return spots filtered by query parameters.
       }
     }
     ```
-
