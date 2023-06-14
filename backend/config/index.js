@@ -1,4 +1,3 @@
-// backend/config/index.js
 module.exports = {
     environment: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 8000,
@@ -8,3 +7,5 @@ module.exports = {
       expiresIn: process.env.JWT_EXPIRES_IN
     }
   };
+
+  

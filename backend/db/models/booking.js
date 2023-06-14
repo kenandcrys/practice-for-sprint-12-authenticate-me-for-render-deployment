@@ -4,43 +4,24 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
-
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      // Many-to-one relationship with User
-      Booking.belongsTo(models.User, {foreignKey: 'userId'});
-
-      // Many-to-one relationship with Spot
-      Booking.belongsTo(models.Spot, {foreignKey: 'spotId'});
+      // define association here
     }
   };
-
   Booking.init({
-    id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    spotId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    startDate: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    endDate: {
-      type: DataTypes.DATE,
-      allowNull: false
-    }
+    id: DataTypes.INTEGER,
+    spotId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
+    startDate: DataTypes.DATEONLY,
+    endDate: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'Booking',
   });
-
   return Booking;
 };

@@ -4,62 +4,24 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
-
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      // Many-to-one relationship with Image (polymorphic)
-      Review.hasMany(models.Image, {
-        foreignKey: 'imageableId',
-        constraints: false,
-        scope: {
-          imageableType: 'Review'
-        },
-        //alias for Review Images
-        as: 'ReviewImages'
-      });
-
-      // Many-to-one relationship with Spot
-      Review.belongsTo(models.Spot, {foreignKey: 'spotId'});
-
-      // Many-to-one relationship with User
-      Review.belongsTo(models.User, {foreignKey: 'userId'});
-
+      // define association here
     }
   };
-
-  Review.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
-      },
-      spotId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      review: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-      stars: {
-        type: DataTypes.INTEGER(1,5),
-        allowNull: false,
-        validate: {
-          min: 1, // Minimum value is 1
-          max: 5 // Maximum value is 5
-        }
-      }
-    },
-    {
-      sequelize,
-      modelName: 'Review'
-    }
-  );
-
+  Review.init({
+    id: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
+    spotId: DataTypes.INTEGER,
+    review: DataTypes.STRING,
+    stars: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'Review',
+  });
   return Review;
 };

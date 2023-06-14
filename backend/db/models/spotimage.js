@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model, ForeignKeyConstraintError
+  Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class SpotImage extends Model {
@@ -10,10 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      SpotImage.belongsTo(models.Spot, { foreignKey: "spotId" });
+      // define association here
     }
-  }
+  };
   SpotImage.init({
+    id: DataTypes.INTEGER,
     spotId: DataTypes.INTEGER,
     url: DataTypes.STRING,
     preview: DataTypes.BOOLEAN
